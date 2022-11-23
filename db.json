@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstName": "Grishm",
+      "lastName": "Rathod",
+      "userName": "grathod",
+      "password": "Admin@123",
+      "role": 1
+    },
+    {
+      "id": 2,
+      "firstName": "Pratik",
+      "lastName": "Sonigra",
+      "userName": "psoni",
+      "password": "Admin@123",
+      "role": 2
+    },
+    {
+      "id": 1,
+      "firstName": "Tanvesh",
+      "lastName": "Makwana",
+      "userName": "tmakwana",
+      "password": "Admin@123",
+      "role": 2
+    }
+  ] 
+}
