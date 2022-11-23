@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { BehaviorSubject, delay, filter, map, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
-import { API } from '../shared/constant';
+import { API } from '../shared/constant/constant';
 
 const API_URL = environment.API_URL;
 
@@ -20,8 +20,7 @@ export class AuthenticationService {
     this.currentUser = this.currentUserSubject.asObservable();
   }
   
-  public get currentUserValue(): any {
-    console.log(this.currentUserSubject.value)
+  public get currentUserValue(): any {  
     return this.currentUserSubject.value;
   }
 
@@ -30,8 +29,7 @@ export class AuthenticationService {
         .pipe(    
           // delay(5000),                
           map((res: any) => {
-            //login successful if there's a jwt token in the response
-            console.log(res)
+            //login successful if there's a jwt token in the response            
             const user = res.find((data: User) => {
               return data.userName == username && data.password == password
             })            

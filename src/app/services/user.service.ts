@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { delay, map, Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { User, UserListResponse } from '../models/user';
-import { API } from '../shared/constant';
+import { API } from '../shared/constant/constant';
 
 const API_URL = environment.API_URL;
 

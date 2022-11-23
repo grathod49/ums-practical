@@ -24,8 +24,7 @@ export class UsersComponent implements OnInit {
   }
 
   getUserData(){    
-    this.userList = this.route.snapshot.data['users'];
-    console.log(this.userList)
+    this.userList = this.route.snapshot.data['users'];    
   }  
 
   ngOnDestroy(): void {
