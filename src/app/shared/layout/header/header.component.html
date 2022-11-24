@@ -1,4 +1,13 @@
-<nav mat-tab-nav-bar>    
+<!-- <nav mat-tab-nav-bar>    
     <a mat-tab-link routerLink="/users" [active]="true">Users</a>
-    <a mat-tab-link (click)="logout()">Logout</a>
+    <a mat-tab-link (click)="logout()" class="float-right">Logout | {{ currentUser.firstName }} {{ currentUser.lastName }}</a>
+    <a mat-tab-link class="float-right">{{ currentUser.firstName }} {{ currentUser.lastName }}</a>
+</nav> -->
+<nav>
+    <ul id='navbar'>
+        <li><a routerLink="/users/view/{{currentUser?.id}}">Profile</a></li>
+        <li *ngIf="currentUser?.isAdmin"><a routerLink="/users">Users</a></li>        
+        <li class="fw-500 float-right">{{ currentUser?.firstName }} {{ currentUser?.lastName }}</li>                
+        <li class="float-right"><a class="c-p" (click)="logout()">Logout</a></li>                        
+    </ul>
 </nav>

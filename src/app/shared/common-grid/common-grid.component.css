@@ -1,0 +1,17 @@
+table {
+    width: 100%;
+  }
+  
+.padding-icons{
+    padding-top: 18px;
+}
+
+.paginator{
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+}
+
+::ng-deep .mat-elevation-z8 {
+    box-shadow: none !important;
+}

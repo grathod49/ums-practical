@@ -9,16 +9,10 @@ const routes: Routes = [
   {
     path: 'login', 
     loadChildren: () => import('./components/authentication/authentication.module').then(m => m.LoginModule)
-  },
-  {
-    path: 'header', 
-    loadChildren: () => import('./components/users/users.module').then(m => m.UsersModule),
-    canActivate: [AuthGuard]    
-  },
+  },  
   {
     path: 'users', 
-    loadChildren: () => import('./components/users/users.module').then(m => m.UsersModule),
-    canActivate: [AuthGuard]    
+    loadChildren: () => import('./components/users/users.module').then(m => m.UsersModule)     
   },
   // redirect to home
   { path: '**', redirectTo: '' }

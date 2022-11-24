@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthenticationService } from 'src/app/services/authentication.service';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-login',
@@ -14,11 +15,13 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted = false;
   loginSubscription$: Subscription | undefined;
+  returnUrl: string | undefined;
 
   constructor(private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService) {
+        private authenticationService: AuthenticationService,
+        private commonService: CommonService) {
             // redirect to home if already logged in
             if (this.authenticationService.currentUserValue) { 
               this.router.navigate(['/']);
@@ -30,6 +33,9 @@ export class LoginComponent implements OnInit {
       username: ['grathod', [Validators.required]],
       password: ['Admin@123', [Validators.required]]
     })  
+
+    // get return url from route parameters or default to '/'
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
   // convenience getter for easy access to form fields
@@ -45,14 +51,22 @@ export class LoginComponent implements OnInit {
 
       this.loginSubscription$ = this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)            
         .subscribe(
-          data => {                    
-            this.router.navigate(['/']);
+          data => {                                                   
+            if(data)
+              this.commonService.showSuccessToastr("Login Succesfull");
+            else{
+              this.commonService.showWarningToastr("Please Enter valid username and password")
+              return;
+            }
+            this.router.navigate([this.returnUrl]);
           },
           error => {
-
+            this.commonService.showErrorToastr(error);
           })        
       } 
-    catch(err) {} 
+    catch(err) {     
+      this.commonService.showErrorToastr("error"); 
+    } 
   } 
   
   ngOnDestroy(): void {

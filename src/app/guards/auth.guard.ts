@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
 
@@ -15,9 +15,16 @@ export class AuthGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      const currentUser = this.authService.currentUserValue;
+      const currentUser = this.authService.currentUserValue;  
+      //const currentUrl = route.url.length && route.url[0].path;
+      let currentUrl = state.url.split('/');        
         if (currentUser) {
-            // authorised so return true
+            if(((!currentUser.isAdmin && currentUser.id != +currentUrl[currentUrl.length - 1]) && currentUrl[currentUrl.length - 2] == "edit") ||
+                (!currentUser.isAdmin && currentUrl[currentUrl.length - 1] == "users")){
+              this.router.navigate([`/users/view/${currentUser.id}`]);
+              return false;
+            }            
+            // authorised so return true            
             return true;
         }
 

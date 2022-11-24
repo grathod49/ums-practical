@@ -8,6 +8,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HeaderComponent } from './shared/layout/header/header.component';
 import { JwtInterceptor } from './helpers/jwt.interceptor';
+import { HttpErrorInterceptor } from './helpers/error.interceptor';
+import {ToastrModule} from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -20,10 +22,12 @@ import { JwtInterceptor } from './helpers/jwt.interceptor';
     NoopAnimationsModule,
     BrowserAnimationsModule,    
     HttpClientModule,
-    MatTabsModule
+    MatTabsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

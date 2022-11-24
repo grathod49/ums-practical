@@ -1,0 +1,46 @@
+<div class="d-flex">
+    <div class="padding-icons w-80">
+        <mat-icon class="mr-1 c-p" (click)="emitData('Add')" *ngIf="gridConfig.operation.add">add_box</mat-icon>
+        <mat-icon class="mr-1 c-p" (click)="emitData('Edit')" *ngIf="gridConfig.operation.edit">edit</mat-icon>
+        <mat-icon class="mr-1 c-p" (click)="emitData('View')" *ngIf="gridConfig.operation.view">visibility</mat-icon>
+        <mat-icon class="mr-1 c-p" (click)="emitData('Delete')" *ngIf="gridConfig.operation.delete">delete</mat-icon>
+        <mat-icon class="c-p" (click)="emitData('Refresh')">refresh</mat-icon>
+    </div>
+    <div class="float-right">
+        <mat-form-field>
+            <input matInput #search (keyup)="applyFilter(search.value)" placeholder="Filter">
+        </mat-form-field>
+    </div>
+</div>
+<hr />
+<table *ngIf="gridConfig" mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Checkbox Column -->
+
+    <ng-container *ngFor="let column of gridConfig.columnConfig; trackBy:trackBy" matColumnDef="{{ column.key }}">
+
+        <ng-container *ngIf="column.key == 'select'">
+            <th mat-header-cell *matHeaderCellDef>
+                <!-- <mat-checkbox (change)="$event ? masterToggle() : null"
+                                [checked]="selection.hasValue() && isAllSelected()"
+                                [indeterminate]="selection.hasValue() && !isAllSelected()">
+                </mat-checkbox> -->
+            </th>
+            <td mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)">
+                </mat-checkbox>
+            </td>
+        </ng-container>
+        <ng-container *ngIf="column.key != 'select'">
+            <th mat-header-cell *matHeaderCellDef> {{ column.value }} </th>
+            <td mat-cell *matCellDef="let element"> {{ element[column.key] }} </td>
+        </ng-container>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="getColumnKeys"></tr>
+    <tr mat-row *matRowDef="let row; columns: getColumnKeys;"></tr>
+
+</table>
+<mat-paginator class="paginator" [length]="this.gridConfig.data.length" [pageSizeOptions]="[2, 4, 6, 8]">
+</mat-paginator>

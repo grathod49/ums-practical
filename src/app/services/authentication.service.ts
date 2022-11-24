@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject, delay, filter, map, Observable } from 'rxjs';
+import { BehaviorSubject, delay, filter, map, observable, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { User } from '../models/user';
+import { User, UserListResponse } from '../models/user';
 import { API } from '../shared/constant/constant';
 
 const API_URL = environment.API_URL;
@@ -12,32 +12,35 @@ const API_URL = environment.API_URL;
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private currentUserSubject: BehaviorSubject<any>;
-  public currentUser: Observable<User>;
+  // user User and Null both here because it has both of the value.
+  private currentUserSubject: BehaviorSubject<User | null> = new BehaviorSubject<User | null>(null);
+  //public currentUser: Observable<User | null>;
 
   constructor(private http: HttpClient, private router: Router) { 
-    this.currentUserSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('currentUser') as any));
-    this.currentUser = this.currentUserSubject.asObservable();
+    let getStorageValue = localStorage.getItem('currentUser') ? JSON.parse(localStorage.getItem('currentUser') || '{}') : null;
+    this.currentUserSubject = new BehaviorSubject<User | null>(getStorageValue);
+    //this.currentUser = this.currentUserSubject.asObservable();
   }
   
-  public get currentUserValue(): any {  
+  public get currentUserValue(): User | null {  
     return this.currentUserSubject.value;
   }
 
   login(username: string, password: string): Observable<User> {    
-    return this.http.get<User>(`${API_URL}${API.LOGIN}`)            
-        .pipe(    
-          // delay(5000),                
-          map((res: any) => {
-            //login successful if there's a jwt token in the response            
-            const user = res.find((data: User) => {
+    return this.http.get<User[]>(`${API_URL}${API.LOGIN}`)            
+        .pipe(                             
+          map((res: User[]) => {            
+            //check whether user is exist or not.            
+            const user: User = res.filter((data: User) => {
               return data.userName == username && data.password == password
-            })            
+            })[0];   
+
             if (user) {              
                 // store user details in local storage to keep user logged in between page refreshes
                 localStorage.setItem('currentUser', JSON.stringify(user));
-                this.currentUserSubject.next(user);                
+                 this.currentUserSubject.next(user);                
             }
+            
             return user;
         }));
 }
@@ -49,7 +52,7 @@ logout() {
 }
 
 isLoggedIn(): boolean {
-  const isLogIn = localStorage.getItem('currentUser');
-  return isLogIn ? true : false;
+  const isLogIn = localStorage.getItem('currentUser');  
+  return isLogIn ? true : false;  
 }
 }

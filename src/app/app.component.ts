@@ -10,10 +10,7 @@ import { AuthenticationService } from './services/authentication.service';
 })
 export class AppComponent {
   title = 'UMS';
-  currentUser!: User;
-
-  constructor(private authenticationService: AuthenticationService,
-    private router: Router){
-      this.authenticationService.currentUser.subscribe(x => this.currentUser = x);     
+  
+  constructor(public authenticationService: AuthenticationService){      
   }  
 }

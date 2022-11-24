@@ -1,0 +1,9 @@
+
+<div>
+<div class="card" *ngIf="userData">    
+    <h1>{{userData.firstName}} {{userData.lastName}}</h1>
+    <p class="title">{{userData.userName}}</p>
+    <p>{{ userData.isAdmin ? 'Admin User' : 'Regular User' }}</p>    
+    <p><a routerLink="/users/edit/{{userData.id}}">Edit User</a></p>
+  </div>
+</div>

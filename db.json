@@ -1,28 +1,36 @@
 {
   "users": [
     {
-      "id": 1,
-      "firstName": "Grishm",
-      "lastName": "Rathod",
       "userName": "grathod",
+      "firstName": "grishm",
+      "lastName": "rathod",
       "password": "Admin@123",
-      "role": 1
+      "isAdmin": true,
+      "id": 3
     },
     {
-      "id": 2,
-      "firstName": "Pratik",
-      "lastName": "Sonigra",
-      "userName": "psoni",
+      "userName": "admin",
+      "firstName": "admin",
+      "lastName": "admin",
       "password": "Admin@123",
-      "role": 2
+      "isAdmin": false,
+      "id": 5
     },
     {
-      "id": 1,
-      "firstName": "Tanvesh",
-      "lastName": "Makwana",
       "userName": "tmakwana",
+      "firstName": "tanvesh",
+      "lastName": "makwana",
       "password": "Admin@123",
-      "role": 2
+      "isAdmin": false,
+      "id": 6
+    },
+    {
+      "userName": "daad",
+      "firstName": "ders",
+      "lastName": "aesriiiiii",
+      "password": "Admin@123",
+      "isAdmin": false,
+      "id": 7
     }
-  ] 
+  ]
 }

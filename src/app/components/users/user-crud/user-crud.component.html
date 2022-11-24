@@ -1,1 +1,42 @@
-<p>user-crud works!</p>
+<!-- <h1 mat-dialog-title>test</h1> -->
+<div mat-dialog-content class="form">
+    <form [formGroup]="userForm" novalidate (ngSubmit)="onSubmit()">
+
+        <mat-form-field>
+            <mat-icon matPrefix>person_outline</mat-icon>
+            <input type="text" matInput placeholder="User Name" formControlName="userName"
+                [readonly]="!currentUser?.isAdmin">
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-icon matPrefix>person_outline</mat-icon>
+            <input type="text" matInput placeholder="First Name" formControlName="firstName">
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-icon matPrefix>person_outline</mat-icon>
+            <input type="text" matInput placeholder="Last Name" formControlName="lastName">
+        </mat-form-field>
+        <br />
+        <mat-form-field>
+            <mat-icon matPrefix>lock_outline</mat-icon>
+            <input type="password" autocomplete="false" matInput placeholder="Password" formControlName="password">
+        </mat-form-field>
+        <br />
+        <mat-checkbox (click)="$event.stopPropagation()" id="userType" color='primary' formControlName="isAdmin"
+            [disabled]="!currentUser?.isAdmin">
+            <label>
+                Admin User
+            </label>
+        </mat-checkbox>
+
+        <br />
+        <br />
+
+        <div class="float-right">
+            <button class="mr-2" type="submit" mat-raised-button color="primary" class="mr-2"
+                [disabled]="submitted">Submit</button>            
+        </div>
+
+    </form>
+</div>

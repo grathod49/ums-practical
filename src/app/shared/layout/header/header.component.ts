@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
@@ -8,8 +9,10 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor(private authenticationService: AuthenticationService, private router: Router) { }
+  currentUser: User | null;
+  constructor(private authenticationService: AuthenticationService, private router: Router) {
+    this.currentUser = this.authenticationService.currentUserValue;
+   }
 
   ngOnInit(): void {
   }

@@ -4,7 +4,7 @@ export interface User {
     password: string;
     firstName: string;
     lastName: string;
-    roleId: string;
+    isAdmin: boolean;
 }
 
 export interface UserListResponse {    

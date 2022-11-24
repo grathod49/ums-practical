@@ -1,0 +1,24 @@
+::ng-deep .mat-tab-links {
+    display: block !important;
+}
+
+nav ul{
+	background-attachment: fixed;	
+	width: auto;
+	background-color: #ccc;
+    margin: 0;
+}
+nav ul li{
+	display: inline-block;
+	margin: 40px;
+	margin-bottom: 20px;
+	margin-top: 25px;
+    font-size: 15px;
+}
+nav ul li a{
+	text-decoration: none;
+	color: black;
+}
+nav ul li a:hover{
+	font-weight: 500;
+}
