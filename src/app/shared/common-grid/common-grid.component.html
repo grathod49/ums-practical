@@ -1,9 +1,9 @@
 <div class="d-flex">
     <div class="padding-icons w-80">
-        <mat-icon class="mr-1 c-p" (click)="emitData('Add')" *ngIf="gridConfig?.operation.add">add_box</mat-icon>
-        <mat-icon class="mr-1 c-p" (click)="emitData('Edit')" *ngIf="gridConfig?.operation.edit">edit</mat-icon>
-        <mat-icon class="mr-1 c-p" (click)="emitData('View')" *ngIf="gridConfig?.operation.view">visibility</mat-icon>
-        <mat-icon class="mr-1 c-p" (click)="emitData('Delete')" *ngIf="gridConfig?.operation.delete">delete</mat-icon>
+        <mat-icon class="mr-1 c-p" (click)="emitData('Add')" *ngIf="gridConfig?.operation?.add">add_box</mat-icon>
+        <mat-icon class="mr-1 c-p" (click)="emitData('Edit')" *ngIf="gridConfig?.operation?.edit">edit</mat-icon>
+        <mat-icon class="mr-1 c-p" (click)="emitData('View')" *ngIf="gridConfig?.operation?.view">visibility</mat-icon>
+        <mat-icon class="mr-1 c-p" (click)="emitData('Delete')" *ngIf="gridConfig?.operation?.delete">delete</mat-icon>
         <mat-icon class="c-p" (click)="emitData('Refresh')">refresh</mat-icon>
     </div>
     <div class="float-right">
@@ -42,5 +42,5 @@
     <tr mat-row *matRowDef="let row; columns: getColumnKeys;"></tr>
 
 </table>
-<mat-paginator class="paginator" [length]="this.gridConfig?.data.length" [pageSizeOptions]="[2, 4, 6, 8]">
+<mat-paginator class="paginator" [length]="gridConfig?.data?.length" [pageSizeOptions]="[2, 4, 6, 8]">
 </mat-paginator>
