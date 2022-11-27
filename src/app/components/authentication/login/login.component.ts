@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   submitted = false;
   loginSubscription$: Subscription | undefined;
   returnUrl: string | undefined;
+  successMsg!: string;
 
   constructor(private formBuilder: FormBuilder,
         private route: ActivatedRoute,
@@ -52,10 +53,13 @@ export class LoginComponent implements OnInit {
       this.loginSubscription$ = this.authenticationService.login(this.loginForm.get('username')?.value, this.loginForm.get('password')?.value)            
         .subscribe(
           data => {                                                   
-            if(data)
-              this.commonService.showSuccessToastr("Login Succesfull");
+            if(data){
+              this.successMsg = "Login Succesfull";
+              this.commonService.showSuccessToastr(this.successMsg);
+            }
             else{
-              this.commonService.showWarningToastr("Please Enter valid username and password")
+              this.successMsg = "Please Enter valid username and password";
+              this.commonService.showWarningToastr(this.successMsg)
               return;
             }
             this.router.navigate([this.returnUrl]);

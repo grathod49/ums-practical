@@ -23,9 +23,9 @@
             <input type="password" autocomplete="false" matInput placeholder="Password" formControlName="password">
         </mat-form-field>
         <br />
-        <mat-checkbox (click)="$event.stopPropagation()" id="userType" color='primary' formControlName="isAdmin"
+        <mat-checkbox ngDefaultControl (click)="$event.stopPropagation()" id="userType" color='primary' formControlName="isAdmin"
             [disabled]="!currentUser?.isAdmin">
-            <label>
+            <label for="isAdmin">
                 Admin User
             </label>
         </mat-checkbox>

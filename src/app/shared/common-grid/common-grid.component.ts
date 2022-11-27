@@ -21,7 +21,7 @@ export class CommonGridComponent implements OnInit, OnChanges {
 
   constructor() { }
 
-  ngOnInit(): void {                
+  ngOnInit(): void {       
   }
 
   ngOnChanges(){

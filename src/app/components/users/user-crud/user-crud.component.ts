@@ -32,7 +32,7 @@ export class UserCrudComponent implements OnInit, OnDestroy {
     private authenticationService: AuthenticationService,
     private commonService: CommonService) {
     this.userId = this.route.snapshot.paramMap.get('id') || '';
-    this.currentPath = this.route.snapshot.url[0].path;    
+    this.currentPath = this.route.snapshot.url[0]?.path;    
     this.currentUser = this.authenticationService.currentUserValue;
   }
 

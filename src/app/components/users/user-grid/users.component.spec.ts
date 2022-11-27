@@ -1,4 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterModule } from '@angular/router';
+import { ToastrModule } from 'ngx-toastr';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 import { UsersComponent } from './users.component';
 
@@ -8,7 +12,9 @@ describe('UsersComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ UsersComponent ]
+      declarations: [ UsersComponent ],
+      imports: [RouterModule.forRoot([]), HttpClientModule, ToastrModule.forRoot()],
+      providers: [AuthenticationService]
     })
     .compileComponents();
   });
