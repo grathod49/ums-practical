@@ -41,10 +41,10 @@
       "id": 8
     },
     {
-      "userName": "sachin.suthariya",
-      "firstName": "sachin",
-      "lastName": "suthariya",
-      "password": "Test@123",
+      "userName": "regular",
+      "firstName": "regular",
+      "lastName": "User",
+      "password": "Admin@123",
       "isAdmin": false,
       "id": 9
     }
