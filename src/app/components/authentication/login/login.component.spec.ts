@@ -6,9 +6,9 @@ import { CommonService } from '../../../services/common.service';
 import { LoginComponent } from './login.component';
 
 const routerSpy = jasmine.createSpyObj('Router', ['navigateByUrl']);
-const activatedRouteSpy = jasmine.createSpyObj('ActivatedRoute');
+const activatedRouteSpy = jasmine.createSpyObj('ActivatedRoute', []);
 const loginServiceSpy = jasmine.createSpyObj('AuthenticationService', ['login']);
-const commonServiceSpy = jasmine.createSpyObj('CommonService');
+const commonServiceSpy = jasmine.createSpyObj('CommonService', []);
 
 const testUserData = { id: 1, name: 'TekLoon'};
 const loginErrorMsg = 'Invalid Login';
