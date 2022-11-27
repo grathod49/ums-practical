@@ -31,6 +31,22 @@
       "password": "Admin@123",
       "isAdmin": false,
       "id": 7
+    },
+    {
+      "userName": "nrahate",
+      "firstName": "Nimesh",
+      "lastName": "Rahate",
+      "password": "Admin@123",
+      "isAdmin": false,
+      "id": 8
+    },
+    {
+      "userName": "sachin.suthariya",
+      "firstName": "sachin",
+      "lastName": "suthariya",
+      "password": "Test@123",
+      "isAdmin": false,
+      "id": 9
     }
   ]
 }
